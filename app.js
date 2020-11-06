@@ -84,7 +84,6 @@ passport.deserializeUser(User.deserializeUser());
 //!passing data to all the tempelates
 app.use(function (req, res, next) {
     res.locals.currentUser = req.user;
-
     next();
 });
 
