@@ -9,7 +9,7 @@ var back = require('express-back'); //access previous paths
 var app = express();
 require('dotenv').config(); //for env variables
 // const moment = require('moment-timezone');
-
+var chatRoute = require("./routes/chat.js");
 
 // var indexRoute = require("./routes/index.js");
 
@@ -75,6 +75,7 @@ app.use(back());
 //     next();
 // });
 
+<<<<<<< HEAD
 
 //login
 app.get("/login", function(req, res){
@@ -127,6 +128,9 @@ app.get("/", function (req, res) {
 
 
 
+=======
+app.use(chatRoute);
+>>>>>>> c0c91a203d3d37143040c8b74c141eab5225bf5f
 app.listen(process.env.PORT || 3000, function () {
     console.log("app started");
 });
