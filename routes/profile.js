@@ -2,23 +2,25 @@ var express = require("express");
 var router = express.Router();   // new instance of the router
 var mongoose = require("mongoose");     
 var Profile = require("../models/Profile");
+var User = require("../models/User");
 var bodyParser = require('body-parser');
 // var middleware = require("../middleware"); 
 
+
 //get
-router.get("/posts", function(req, res){ 
+router.get("/", function(req, res){ 
     Profile.find({}, function(err, allProfiles){
         if(err){
             console.log(err);
         }
         else{
-            res.render("profile",{profile: allProfiles, currentUser: req.user});
+            res.render("./profile/profile",{profile: allProfiles, currentUser: req.user});
         }
     });
 });
 
 //post
-router.post("/posts", function(req, res){    
+router.post("/", function(req, res){    
     var year = req.body.year;
     var lang = req.body.lang;
     var tech = req.body.tech;
@@ -39,12 +41,6 @@ router.post("/posts", function(req, res){
             res.redirect("/profile");  
         }
     });
-});
-
-
-//NEW - show form to create new campgrounds
-router.get("/newProfile", function(req, res){   
-    res.render("/profile/newprofile");
 });
 
 // SHOW - shows more info about one campground

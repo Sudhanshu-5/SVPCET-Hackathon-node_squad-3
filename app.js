@@ -81,6 +81,7 @@ passport.deserializeUser(User.deserializeUser());
 //!passing data to all the tempelates
 app.use(function (req, res, next) {
     res.locals.currentUser = req.user;
+
     next();
 });
 
@@ -141,7 +142,7 @@ app.get("/", function (req, res) {
 
 
 
-app.use( profileRoutes);
+app.use("/profile",profileRoute);
 
 
 // app.use(chatRoute);
