@@ -7,11 +7,9 @@ var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var back = require('express-back'); //access previous paths
 var app = express();
-require('dotenv').config(); //for env variables
-// const moment = require('moment-timezone');
-// var chatRoute = require("./views/routes/chat.js");
+require('dotenv').config();
+var chatRoute = require("./routes/chat.js");
 
-// var indexRoute = require("./routes/index.js");
 
 
 
@@ -42,11 +40,16 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use(require("express-session")({
     secret: "going to know u soon",
     resave: false,
     saveUninitialized: false
 }));
+
 app.use(methodOverride("_method"));
 app.use(express.static("./public"));
 
@@ -121,14 +124,7 @@ app.get("/", function (req, res) {
     res.render("homepage");
 });
 
-
-
-// app.use(mealsRoute);
-
-
-
-
-// app.use(chatRoute);
+app.use(chatRoute);
 
 app.listen(process.env.PORT || 3000, function () {
     console.log("app started");
