@@ -1,0 +1,17 @@
+<div class="thumbnail">
+    <img class="img-responsive" src="<%= profile.image %>">
+    <div class="caption-full">
+        <h4 class="pull-right">Rs.<%= campground.price %>/night</h4>
+        <h4><a><h1><%= campground.name %></h1></a></h4>
+        <p><%= campground.description %></p>
+        <p>
+            <em>Submitted by: <%= campground.author.username %>, <%= moment(campground.createdAt).fromNow() %></em>
+        </p>
+        <% if(currentUser && campground.author.id.equals(currentUser._id)) { %>
+            <a class="btn btn-xs btn-warning" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
+            <form id="delete-form" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
+                <button class="btn btn-xs btn-danger">Delete</button>
+            </form>
+        <% } %>
+    </div>
+</div>
