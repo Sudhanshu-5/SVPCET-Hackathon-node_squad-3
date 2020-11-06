@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Sudhanshu-5/SVPCET-Hackathon-node_squad-3#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "express-back": "0.0.2",
     "express-session": "^1.17.1",
     "local": "^0.3.3",

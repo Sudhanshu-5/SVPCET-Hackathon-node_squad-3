@@ -76,8 +76,49 @@ app.use(back());
 // });
 
 
+//login
+app.get("/login", function(req, res){
+    res.render("/auth/login.ejs");
+});
+
+//handle login logic
+app.post("/auth/login", passport.authenticate("local", {
+    successRedirect: "/dashboard",
+    failureRedirect: "/"
+    }) ,function(req, res){
+
+});
+
+//show sign-up form
+app.get("/register", function(req, res){
+    res.render("/auth/register.ejs");
+});
+
+//handle sign up logic
+app.post("/register", function(req, res){
+    var newUser = new User({username: req.body.username});
+    User.register(newUser, req.body.password, function(err, user){
+        if(err){
+            console.log(err);
+            return res.render("auth/register.ejs");
+        }
+        else{
+            passport.authenticate("local")(req, res, function(){
+                res.redirect("/");
+            });
+        }
+    });
+});
+
+//logout
+app.get("/auth/logout", function(req, res){
+    req.logout();
+    res.redirect("/");
+});
+
+
 app.get("/", function (req, res) {
-    res.render("others/index");
+    res.render("homepage.ejs");
 });
 
 
