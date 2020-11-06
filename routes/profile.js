@@ -14,7 +14,11 @@ router.get("/", function(req, res){
             console.log(err);
         }
         else{
+<<<<<<< HEAD
             res.render("./profile/profile",{profile: allProfiles, currentUser: req.user});
+=======
+            res.render("./profile/profile.ejs",{profile: allProfiles, currentUser: req.user});
+>>>>>>> b4f09c312122c064fb72475e65aaa5a76eca5d24
         }
     });
 });
