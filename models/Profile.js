@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 var passportLocalMongoose = require("passport-local-mongoose");
 const ProfileSchema = new mongoose.Schema({
     year: {
-        type: String
+        type: String,
+        
     },
     lang: {
         type: String
