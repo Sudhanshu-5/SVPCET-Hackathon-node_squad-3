@@ -15,14 +15,9 @@ require('dotenv').config();
 
 //requiring routes
 var chatRoute = require("./views/routes/chat.js");
-var profileRoute = require("./routes/profile.js");
+var profileRoute = require("./routes/profile");
+var postsRoute= require("./routes/posts");
 // var indexRoute = require("./routes/index.js");
-
-
-
-// const {
-//     asyncify
-// } = require("async");
 
 //
 //!depreciate related stuff
@@ -84,6 +79,7 @@ passport.deserializeUser(User.deserializeUser());
 //!passing data to all the tempelates
 app.use(function (req, res, next) {
     res.locals.currentUser = req.user;
+
     next();
 });
 
@@ -142,7 +138,12 @@ app.get("/", function (req, res) {
     res.render("homepage");
 });
 
-app.use("/profile",profileRoute);
+
+
+app.use("/profile", profileRoute);
+app.use(postsRoute);
+
+
 // app.use(chatRoute);
 
 app.listen(process.env.PORT || 3000, function () {

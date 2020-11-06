@@ -8,16 +8,29 @@ var bodyParser = require('body-parser');
 
 
 //get
-router.get("/",  middleware.isLoggedIn, function(req, res){ 
-    Profile.find({}, function(err, allProfiles){
-        if(err){
-            console.log(err);
-        }
-        else{
-            res.render("./profile/profile.ejs",{profile: allProfiles, currentUser: req.user});
-        }
-    });
-});
+router.get("/", async (req, res) => {
+    try {
+        let user = await User.find().populate("profile");
+        res.render("profile/profile",{user:user})
+    }
+    catch (error) {
+        console.log(error)
+    }   
+})
+// router.get("/", async (req, res) =>{ 
+    
+//     tryuser.find()
+//     Profile.find({}, function(err, allProfiles){
+//         if(err){
+//             console.log(err);
+//         }
+//         else{
+
+//             res.render("/profile/profile",{profile: allProfiles, currentUser: req.user});
+
+//         }
+//     });
+// });
 
 router.get("/new", function(req, res){
     res.render("/profile/newprofile");
@@ -47,30 +60,30 @@ router.post("/new", function(req, res){
     });
 });
 
-// SHOW - shows more info about one campground
-router.get("/:id", function (req, res) {
-    //find the campground with provided ID
-    Profile.findById(req.params.id).exec(function (err, foundProfile) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.render("profile/showprofile", {profile: foundProfile});
-        }
-    });
-});
+
+// router.get("/:id", function (req, res) {
+//     //find the campground with provided ID
+//     Profile.findById(req.params.id).exec(function (err, foundProfile) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             res.render("profile/showprofile", {profile: foundProfile});
+//         }
+//     });
+// });
 
 
 // DESTROY CAMPGROUND ROUTE
-router.delete("/:id", function (req, res) {
-    Profile.findById(req.params.id, function (err, profile) {
-        if (err) {
-            res.redirect("/profile");
-        } else {
-            profile.remove();
-            res.redirect("/profile");
-        }
-    });
-});
+// router.delete("/:id", function (req, res) {
+//     Profile.findById(req.params.id, function (err, profile) {
+//         if (err) {
+//             res.redirect("/profile");
+//         } else {
+//             profile.remove();
+//             res.redirect("/profile");
+//         }
+//     });
+// });
 
 
 module.exports = router;
