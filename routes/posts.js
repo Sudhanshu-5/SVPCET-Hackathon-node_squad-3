@@ -25,7 +25,7 @@ cloudinary.config({
 });
 
 
-router.get('/posts', (req, res) => {
+router.get('/posts', middleware.isLoggedIn, (req, res) => {
             
 
 })

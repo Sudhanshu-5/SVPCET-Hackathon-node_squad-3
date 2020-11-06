@@ -5,16 +5,16 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
 var bodyParser = require("body-parser");
-// var middleware = require("./middleware");
+var middleware = require("index");
 var methodOverride = require("method-override");
 var User = require("./models/User");
 var Profile = require("./models/Profile");
-require('dotenv').config(); //for env variables
+require('dotenv').config();
 // const moment = require('moment-timezone');
 
 
 //requiring routes
-// var chatRoute = require("./views/routes/chat.js");
+var chatRoute = require("./views/routes/chat.js");
 var profileRoute = require("./routes/profile.js");
 // var indexRoute = require("./routes/index.js");
 
