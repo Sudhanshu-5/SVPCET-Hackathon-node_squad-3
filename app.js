@@ -78,7 +78,7 @@ app.use(back());
 
 //login
 app.get("/login", function(req, res){
-    res.render("/auth/login.ejs");
+    res.render("auth/login.ejs");
 });
 
 //handle login logic
@@ -91,7 +91,7 @@ app.post("/auth/login", passport.authenticate("local", {
 
 //show sign-up form
 app.get("/register", function(req, res){
-    res.render("/auth/register.ejs");
+    res.render("auth/register");
 });
 
 //handle sign up logic
@@ -100,7 +100,7 @@ app.post("/register", function(req, res){
     User.register(newUser, req.body.password, function(err, user){
         if(err){
             console.log(err);
-            return res.render("auth/register.ejs");
+            return res.render("auth/register");
         }
         else{
             passport.authenticate("local")(req, res, function(){
@@ -118,7 +118,7 @@ app.get("/auth/logout", function(req, res){
 
 
 app.get("/", function (req, res) {
-    res.render("homepage.ejs");
+    res.render("homepage");
 });
 
 
