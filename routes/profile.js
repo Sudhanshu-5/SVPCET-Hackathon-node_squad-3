@@ -41,12 +41,6 @@ router.post("/", function(req, res){
     });
 });
 
-
-//NEW - show form to create new campgrounds
-router.get("/newProfile", middleware.isLoggedIn, function(req, res){   
-    res.render("/profile/newprofile");
-});
-
 // SHOW - shows more info about one campground
 router.get("/:id", function (req, res) {
     //find the campground with provided ID
