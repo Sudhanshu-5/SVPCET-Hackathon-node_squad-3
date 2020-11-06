@@ -15,7 +15,8 @@ require('dotenv').config(); //for env variables
 
 //requiring routes
 // var chatRoute = require("./views/routes/chat.js");
-var profileRoute= require("./routes/profile");
+var profileRoute = require("./routes/profile");
+var postsRoute= require("./routes/posts");
 // var indexRoute = require("./routes/index.js");
 
 //
@@ -139,7 +140,8 @@ app.get("/", function (req, res) {
 
 
 
-app.use("/profile",profileRoute);
+app.use("/profile", profileRoute);
+app.use(postsRoute);
 
 
 // app.use(chatRoute);
