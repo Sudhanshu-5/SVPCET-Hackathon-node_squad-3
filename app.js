@@ -15,21 +15,8 @@ require('dotenv').config(); //for env variables
 
 //requiring routes
 // var chatRoute = require("./views/routes/chat.js");
-<<<<<<< HEAD
-var profileRoutes = require("./routes/profile");
-=======
-var profileRoute = require("./routes/profile.js");
->>>>>>> b4f09c312122c064fb72475e65aaa5a76eca5d24
+var profileRoute= require("./routes/profile");
 // var indexRoute = require("./routes/index.js");
-
-
-
-<<<<<<< HEAD
-=======
-// const {
-//     asyncify
-// } = require("async");
->>>>>>> b4f09c312122c064fb72475e65aaa5a76eca5d24
 
 //
 //!depreciate related stuff
