@@ -78,11 +78,11 @@ app.use(back());
 
 //login
 app.get("/login", function(req, res){
-    res.render("/auth/login.ejs");
+    res.render("auth/login");
 });
 
 //handle login logic
-app.post("/auth/login", passport.authenticate("local", {
+app.post("/login", passport.authenticate("local", {
     successRedirect: "/dashboard",
     failureRedirect: "/"
     }) ,function(req, res){
@@ -91,7 +91,7 @@ app.post("/auth/login", passport.authenticate("local", {
 
 //show sign-up form
 app.get("/register", function(req, res){
-    res.render("/auth/register.ejs");
+    res.render("auth/register.ejs");
 });
 
 //handle sign up logic
@@ -111,14 +111,14 @@ app.post("/register", function(req, res){
 });
 
 //logout
-app.get("/auth/logout", function(req, res){
+app.get("/logout", function(req, res){
     req.logout();
     res.redirect("/");
 });
 
 
 app.get("/", function (req, res) {
-    res.render("homepage.ejs");
+    res.render("homepage");
 });
 
 
