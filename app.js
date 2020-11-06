@@ -7,12 +7,15 @@ var passportLocalMongoose = require("passport-local-mongoose");
 var bodyParser = require("body-parser");
 // var middleware = require("./middleware");
 var methodOverride = require("method-override");
-var back = require('express-back'); //access previous paths
 var User = require("./models/User");
+var Profile = require("./models/Profile");
 require('dotenv').config(); //for env variables
 // const moment = require('moment-timezone');
-// var chatRoute = require("./views/routes/chat.js");
 
+
+//requiring routes
+// var chatRoute = require("./views/routes/chat.js");
+var profiletRoutes = require("./routes/profile");
 // var indexRoute = require("./routes/index.js");
 
 
@@ -52,7 +55,6 @@ app.use(function (req, res, next) {
     res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
     next();
 });
-app.use(back());
 
 app.use(require("express-session")({
     secret: "going to know u soon",
@@ -123,11 +125,17 @@ app.get("/", function (req, res) {
     res.render("homepage");
 });
 
+app.get("/profile", function (req, res) {
+    res.render("./profile/profile");
+});
+
+app.get("/updateprofile", function (req, res) {
+    res.render("./profile/updateprofile");
+});
 
 
-// app.use(mealsRoute);
 
-
+app.use("/profile", profileRoutes);
 
 
 // app.use(chatRoute);
