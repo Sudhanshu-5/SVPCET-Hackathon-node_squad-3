@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 // var middleware = require("../middleware"); 
 
 //get
-router.get("/", function(req, res){ 
+router.get("/posts", function(req, res){ 
     Profile.find({}, function(err, allProfiles){
         if(err){
             console.log(err);
@@ -18,7 +18,7 @@ router.get("/", function(req, res){
 });
 
 //post
-router.post("/", function(req, res){    
+router.post("/posts", function(req, res){    
     var year = req.body.year;
     var lang = req.body.lang;
     var tech = req.body.tech;
@@ -43,7 +43,7 @@ router.post("/", function(req, res){
 
 
 //NEW - show form to create new campgrounds
-router.get("/newProfile", middleware.isLoggedIn, function(req, res){   
+router.get("/newProfile", function(req, res){   
     res.render("/profile/newprofile");
 });
 
@@ -61,7 +61,7 @@ router.get("/:id", function (req, res) {
 
 
 // DESTROY CAMPGROUND ROUTE
-router.delete("/:id", middleware.checkProfileOwnership, function (req, res) {
+router.delete("/:id", function (req, res) {
     Profile.findById(req.params.id, function (err, profile) {
         if (err) {
             res.redirect("/profile");
