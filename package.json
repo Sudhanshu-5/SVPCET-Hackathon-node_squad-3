@@ -19,13 +19,9 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
-<<<<<<< HEAD
-    "ejs": "^3.1.5",
-=======
 
     "ejs": "^3.1.5",
 
->>>>>>> 0adf718e2ec962255ce0a47f1ba0b367e0092
     "express": "^4.17.1",
     "express-back": "0.0.2",
     "express-session": "^1.17.1",
