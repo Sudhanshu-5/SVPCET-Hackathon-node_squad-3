@@ -1,9 +1,10 @@
+<%- include ("../partials/header") %>
 <h1 class="form_top_head">Login</h1>
 
 <div class="container">
     <div class="row">
         <div style="width: 35%; margin: 25px auto;">
-            <form action="/login" method="POST">
+            <form action="login" method="POST">
                 <div class="form-group">
                     <input class="form-control" type="text" name="username" placeholder="username">
                 </div>
@@ -17,3 +18,4 @@
         </div>        
     </div>
 </div>
+<%- include ("../partials/footer") %>

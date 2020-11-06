@@ -8,12 +8,16 @@ var bodyParser = require("body-parser");
 // var middleware = require("./middleware");
 var methodOverride = require("method-override");
 var back = require('express-back'); //access previous paths
+var app = express();
+require('dotenv').config();
+var chatRoute = require("./routes/chat.js");
+var postsRoute = require("./routes/posts.js");
+
 var User = require("./models/User");
 require('dotenv').config(); //for env variables
 // const moment = require('moment-timezone');
-// var chatRoute = require("./views/routes/chat.js");
+var chatRoute = require("./routes/chat.js");
 
-// var indexRoute = require("./routes/index.js");
 
 
 
@@ -43,6 +47,15 @@ mongoose.connect("mongodb://sudhanshu:sudhanshu@cluster0-shard-00-00-7nbwd.mongo
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({
     extended: true
+}));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(require("express-session")({
+    secret: "going to know u soon",
+    resave: false,
+    saveUninitialized: false
 }));
 
 app.use(methodOverride("_method"));
@@ -80,12 +93,12 @@ app.use(function (req, res, next) {
 
 //login
 app.get("/login", function(req, res){
-    res.render("auth/login");
+    res.render("auth/login.ejs");
 });
 
 //handle login logic
 app.post("/login", passport.authenticate("local", {
-    successRedirect: "/dashboard",
+    successRedirect: "/posts",
     failureRedirect: "/"
     }) ,function(req, res){
 
@@ -97,14 +110,23 @@ app.get("/register", function(req, res){
 });
 
 //handle sign up logic
-app.post("/register", function(req, res){
-    var newUser = new User({username: req.body.username});
-    User.register(newUser, req.body.password, function(err, user){
+app.post("/register", function (req, res) {
+    console.log(req.body.name)
+    var newUser = new User({
+        name: req.body.name,
+        gender: req.body.gender,
+        email: req.body.email,
+        dob: req.body.dob,
+        mobileno:req.body.mobileno,
+        username: req.body.username,
+       });
+    User.register(newUser, req.body.password,function(err, user){
         if(err){
             console.log(err);
             return res.render("auth/register");
         }
-        else{
+        else {
+            console.log("uuser"+user)
             passport.authenticate("local")(req, res, function(){
                 res.redirect("/");
             });
@@ -113,7 +135,7 @@ app.post("/register", function(req, res){
 });
 
 //logout
-app.get("/logout", function(req, res){
+app.get("/auth/logout", function(req, res){
     req.logout();
     res.redirect("/");
 });
@@ -123,14 +145,8 @@ app.get("/", function (req, res) {
     res.render("homepage");
 });
 
-
-
-// app.use(mealsRoute);
-
-
-
-
-// app.use(chatRoute);
+app.use(chatRoute);
+app.use(postsRoute)
 
 app.listen(process.env.PORT || 3000, function () {
     console.log("app started");
