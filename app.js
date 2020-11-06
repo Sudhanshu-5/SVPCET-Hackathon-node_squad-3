@@ -75,7 +75,6 @@ app.use(back());
 //     next();
 // });
 
-<<<<<<< HEAD
 
 //login
 app.get("/login", function(req, res){
@@ -128,9 +127,9 @@ app.get("/", function (req, res) {
 
 
 
-=======
+
 app.use(chatRoute);
->>>>>>> c0c91a203d3d37143040c8b74c141eab5225bf5f
+
 app.listen(process.env.PORT || 3000, function () {
     console.log("app started");
 });
