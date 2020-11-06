@@ -7,23 +7,23 @@ var passportLocalMongoose = require("passport-local-mongoose");
 var bodyParser = require("body-parser");
 // var middleware = require("./middleware");
 var methodOverride = require("method-override");
-var back = require('express-back'); //access previous paths
-var app = express();
-require('dotenv').config();
-var chatRoute = require("./routes/chat.js");
-var postsRoute = require("./routes/posts.js");
-
 var User = require("./models/User");
+var Profile = require("./models/Profile");
 require('dotenv').config(); //for env variables
 // const moment = require('moment-timezone');
-var chatRoute = require("./routes/chat.js");
+// var chatRoute = require("./routes/chat.js");
+
+
+//requiring routes
+// var chatRoute = require("./views/routes/chat.js");
+var profileRoute = require("./routes/profile.js");
+// var indexRoute = require("./routes/index.js");
 
 
 
-
-const {
-    asyncify
-} = require("async");
+// const {
+//     asyncify
+// } = require("async");
 
 //
 //!depreciate related stuff
@@ -65,7 +65,6 @@ app.use(function (req, res, next) {
     res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
     next();
 });
-app.use(back());
 
 app.use(require("express-session")({
     secret: "going to know u soon",
@@ -86,7 +85,6 @@ passport.deserializeUser(User.deserializeUser());
 //!passing data to all the tempelates
 app.use(function (req, res, next) {
     res.locals.currentUser = req.user;
-
     next();
 });
 
@@ -145,8 +143,8 @@ app.get("/", function (req, res) {
     res.render("homepage");
 });
 
-app.use(chatRoute);
-app.use(postsRoute)
+app.use("/profile",profileRoute);
+// app.use(chatRoute);
 
 app.listen(process.env.PORT || 3000, function () {
     console.log("app started");

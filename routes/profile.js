@@ -2,8 +2,10 @@ var express = require("express");
 var router = express.Router();   // new instance of the router
 var mongoose = require("mongoose");     
 var Profile = require("../models/Profile");
+var User = require("../models/User");
 var bodyParser = require('body-parser');
 // var middleware = require("../middleware"); 
+
 
 //get
 router.get("/", function(req, res){ 
@@ -12,7 +14,7 @@ router.get("/", function(req, res){
             console.log(err);
         }
         else{
-            res.render("profile",{profile: allProfiles, currentUser: req.user});
+            res.render("./profile/profile.ejs",{profile: allProfiles, currentUser: req.user});
         }
     });
 });
@@ -55,7 +57,7 @@ router.get("/:id", function (req, res) {
 
 
 // DESTROY CAMPGROUND ROUTE
-router.delete("/:id", middleware.checkProfileOwnership, function (req, res) {
+router.delete("/:id", function (req, res) {
     Profile.findById(req.params.id, function (err, profile) {
         if (err) {
             res.redirect("/profile");

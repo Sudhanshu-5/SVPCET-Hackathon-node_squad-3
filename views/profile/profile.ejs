@@ -1,12 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>HELLO
-        </h1>
-</body>
-</html>
+                <div class="card-body">
+                  <!-- <h5 class="card-title"><%= profile.name %></h5> -->
+                  <p class="card-text">currently studying in <%= profile.year %></p>
+                  <h6>skills</h6>
+                  <p class="card-text"><%= profile.lang %></p>
+                  <p class="card-text"><%= profile.tech %></p>
+                  <p class="card-text"><%= profile.comproject %></p>
+                  <p class="card-text"><%= profile.comprojectdesc %></p>
+                  <p class="card-text"><%= profile.incproject %></p>
+                  <p class="card-text"><%= profile.incprojectdesc %></p>
+                  <p class="card-text"><%= profile.codingplat %></p>
+                  <p class="card-text"><%= profile.failures %></p>
+                </div>
+              
+
+        <p><%= profile.description %></p>
+
+        <% if(currentUser && profile.author.id.equals(currentUser._id)) { %>
+            <form id="delete-form" action="/profile/<%= profile._id %>?_method=DELETE" method="POST">
+                <button class="btn btn-xs btn-danger">Delete</button>
+            </form>
+        <% } %>
+    </div>
+</div>
