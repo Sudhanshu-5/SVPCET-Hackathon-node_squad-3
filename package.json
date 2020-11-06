@@ -1,0 +1,29 @@
+{
+  "name": "svpcet-hackathon-node_squad-3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sudhanshu-5/SVPCET-Hackathon-node_squad-3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sudhanshu-5/SVPCET-Hackathon-node_squad-3/issues"
+  },
+  "homepage": "https://github.com/Sudhanshu-5/SVPCET-Hackathon-node_squad-3#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express-back": "0.0.2",
+    "express-session": "^1.17.1",
+    "local": "^0.3.3",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.10.12",
+    "passport": "^0.4.1",
+    "passport-local-mongoose": "^6.0.1"
+  }
+}
