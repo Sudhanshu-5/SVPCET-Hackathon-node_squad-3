@@ -6,6 +6,7 @@ var User = require("../models/User");
 var bodyParser = require('body-parser');
 // var middleware = require("../middleware"); 
 
+
 //get
 router.get("/", function(req, res){ 
     Profile.find({}, function(err, allProfiles){
@@ -13,7 +14,7 @@ router.get("/", function(req, res){
             console.log(err);
         }
         else{
-            res.render("profile/profile",{profile: allProfiles, currentUser: req.user});
+            res.render("./profile/profile.ejs",{profile: allProfiles, currentUser: req.user});
         }
     });
 });
