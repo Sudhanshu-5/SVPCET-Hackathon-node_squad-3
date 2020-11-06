@@ -11,6 +11,8 @@ var back = require('express-back'); //access previous paths
 var app = express();
 require('dotenv').config();
 var chatRoute = require("./routes/chat.js");
+var postsRoute = require("./routes/posts.js");
+
 var User = require("./models/User");
 require('dotenv').config(); //for env variables
 // const moment = require('moment-timezone');
@@ -96,7 +98,7 @@ app.get("/login", function(req, res){
 
 //handle login logic
 app.post("/login", passport.authenticate("local", {
-    successRedirect: "/dashboard",
+    successRedirect: "/posts",
     failureRedirect: "/"
     }) ,function(req, res){
 
@@ -144,6 +146,7 @@ app.get("/", function (req, res) {
 });
 
 app.use(chatRoute);
+app.use(postsRoute)
 
 app.listen(process.env.PORT || 3000, function () {
     console.log("app started");
