@@ -15,14 +15,14 @@ require('dotenv').config(); //for env variables
 
 //requiring routes
 // var chatRoute = require("./views/routes/chat.js");
-var profiletRoutes = require("./routes/profile");
+var profileRoute = require("./routes/profile.js");
 // var indexRoute = require("./routes/index.js");
 
 
 
-const {
-    asyncify
-} = require("async");
+// const {
+//     asyncify
+// } = require("async");
 
 //
 //!depreciate related stuff
@@ -142,11 +142,7 @@ app.get("/", function (req, res) {
     res.render("homepage");
 });
 
-
-
-app.use("/profile", profileRoutes);
-
-
+app.use("/profile",profileRoute);
 // app.use(chatRoute);
 
 app.listen(process.env.PORT || 3000, function () {
