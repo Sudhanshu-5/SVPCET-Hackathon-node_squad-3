@@ -48,6 +48,15 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(require("express-session")({
+    secret: "going to know u soon",
+    resave: false,
+    saveUninitialized: false
+}));
+
 app.use(methodOverride("_method"));
 app.use(express.static("./public"));
 
@@ -87,7 +96,7 @@ app.get("/login", function(req, res){
 
 //handle login logic
 app.post("/login", passport.authenticate("local", {
-    successRedirect: "/dashboard",
+    successRedirect: "/posts",
     failureRedirect: "/"
     }) ,function(req, res){
 
@@ -99,14 +108,23 @@ app.get("/register", function(req, res){
 });
 
 //handle sign up logic
-app.post("/register", function(req, res){
-    var newUser = new User({username: req.body.username});
-    User.register(newUser, req.body.password, function(err, user){
+app.post("/register", function (req, res) {
+    console.log(req.body.name)
+    var newUser = new User({
+        name: req.body.name,
+        gender: req.body.gender,
+        email: req.body.email,
+        dob: req.body.dob,
+        mobileno:req.body.mobileno,
+        username: req.body.username,
+       });
+    User.register(newUser, req.body.password,function(err, user){
         if(err){
             console.log(err);
             return res.render("auth/register");
         }
-        else{
+        else {
+            console.log("uuser"+user)
             passport.authenticate("local")(req, res, function(){
                 res.redirect("/");
             });
@@ -123,14 +141,6 @@ app.get("/logout", function(req, res){
 
 app.get("/", function (req, res) {
     res.render("homepage");
-});
-
-app.get("/profile", function (req, res) {
-    res.render("./profile/profile");
-});
-
-app.get("/updateprofile", function (req, res) {
-    res.render("./profile/updateprofile");
 });
 
 
