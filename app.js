@@ -1,7 +1,9 @@
 var express = require("express");
+var app = express();
 var mongoose = require("mongoose");
 var passport = require("passport");
 var LocalStrategy = require("passport-local");
+var passportLocalMongoose = require("passport-local-mongoose");
 var bodyParser = require("body-parser");
 // var middleware = require("./middleware");
 var methodOverride = require("method-override");
@@ -9,6 +11,10 @@ var back = require('express-back'); //access previous paths
 var app = express();
 require('dotenv').config();
 var chatRoute = require("./routes/chat.js");
+var User = require("./models/User");
+require('dotenv').config(); //for env variables
+// const moment = require('moment-timezone');
+// var chatRoute = require("./views/routes/chat.js");
 
 
 
@@ -59,24 +65,28 @@ app.use(function (req, res, next) {
 });
 app.use(back());
 
+app.use(require("express-session")({
+    secret: "going to know u soon",
+    resave: false,
+    saveUninitialized: false
+}));
+
 //!passport config
-// app.use(passport.initialize());
-// app.use(passport.session());
-// passport.use(new LocalStrategy(user.authenticate()));
-// passport.serializeUser(user.serializeUser());
-// passport.deserializeUser(user.deserializeUser());
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 
 
 
 //!passing data to all the tempelates
-// app.use(function (req, res, next) {
-//     res.locals.currentUser = req.user;
+app.use(function (req, res, next) {
+    res.locals.currentUser = req.user;
 
- 
-
-//     next();
-// });
+    next();
+});
 
 
 //login
@@ -94,7 +104,7 @@ app.post("/login", passport.authenticate("local", {
 
 //show sign-up form
 app.get("/register", function(req, res){
-    res.render("auth/register.ejs");
+    res.render("auth/register");
 });
 
 //handle sign up logic
@@ -103,7 +113,7 @@ app.post("/register", function(req, res){
     User.register(newUser, req.body.password, function(err, user){
         if(err){
             console.log(err);
-            return res.render("auth/register.ejs");
+            return res.render("auth/register");
         }
         else{
             passport.authenticate("local")(req, res, function(){
