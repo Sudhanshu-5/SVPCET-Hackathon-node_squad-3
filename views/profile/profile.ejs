@@ -48,24 +48,26 @@
         </div>  
     <div class="col-4 username-ist my-5">
         <div class="mx-auto">
-                  <ul>
-          <%user.forEach(function(item){%>
-      
-                <% if(JSON.stringify(item.username) !== JSON.stringify(currentUser.username)) { %>
-                  <li class="username" style="cursor:pointer">
-                      <%=item.username%>
-                  </li>
-                <%}%> 
-          <%})%> 
-          </ul>
-       </div>
-
-      </div>
-  </div>
+                <ul>
+        <%user.forEach(function(item){%>
+    
+               <% if(JSON.stringify(item.username) !== JSON.stringify(currentUser.username)) { %>
+                <li class="username" style="cursor:pointer">
+                    <%=item.username%>
+                </li>
+               <%}%> 
+         <%})%> 
+         </ul>
+        </div>
+    
+    </div>
+    </div>
 </div>
 
                
-<script type="text/javascript">
+              
+
+<script>
     let username;
     $(".username").on('click',function(){
         //  alert($(this).text())
