@@ -5,19 +5,21 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
 var bodyParser = require("body-parser");
-// var middleware = require("./middleware");
 var methodOverride = require("method-override");
 var User = require("./models/User");
+var Message = require("./models/Message");
 var Profile = require("./models/Profile");
-require('dotenv').config(); //for env variables
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+require('dotenv').config();
 // const moment = require('moment-timezone');
 
 
 //requiring routes
-// var chatRoute = require("./views/routes/chat.js");
-var profileRoute = require("./routes/profile");
-var postsRoute= require("./routes/posts");
-// var indexRoute = require("./routes/index.js");
+var serverRoute = require("./routes/server.js");
+var profileRoute = require("./routes/profile.js");
+// var postsRoute= require("./routes/posts.js");
+var middleware = require("./routes/index.js");
 
 //
 //!depreciate related stuff
@@ -146,13 +148,13 @@ app.get("/", function (req, res) {
     res.render("homepage");
 });
 
-
+app.get("/guidance", function (req, res) {
+    res.render("guidance");
+});
 
 app.use("/profile", profileRoute);
-app.use(postsRoute);
-
-
-// app.use(chatRoute);
+// app.use(postsRoute);
+app.use("/",serverRoute);
 
 app.listen(process.env.PORT || 3000, function () {
     console.log("app started");

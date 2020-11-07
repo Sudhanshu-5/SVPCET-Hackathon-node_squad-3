@@ -41,8 +41,12 @@ router.get("/my", async (req, res) => {
 //     });
 // });
 
+router.get("/new", function(req, res){
+    res.render("/profile/newprofile");
+});
+
 //post
-router.post("/", function(req, res){    
+router.post("/new", function(req, res){    
     var year = req.body.year;
     var lang = req.body.lang;
     var tech = req.body.tech;
