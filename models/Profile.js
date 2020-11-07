@@ -1,38 +1,42 @@
 const mongoose = require('mongoose');
-
+var passportLocalMongoose = require("passport-local-mongoose");
 const ProfileSchema = new mongoose.Schema({
     year: {
         type: String,
-        required: true
+         default:"Add class/year/job" 
     },
-    username: {
+    lang: {
         type: String,
-        required: true
+        default:"Add all languages known at that time"
     },
-    gender: {
+    tech: {
         type: String,
-        required: true
+        default:"known technology stack"
     },
-    email: {
+    comproject: {
         type: String,
-        required: true,
-        unique: true
+        default:"complete projects"
     },
-    password: {
+    comprojectdesc: {
         type: String,
-        required: true
+        default:" project description"
     },
-    mobileno: {
-        type: Number,
-        required: true
+    incproject: {
+        type: String,
+        default:"incomplete projects"
     },
-    avatar: {
-        type: String
+    incprojectdesc: {
+        type: String,
+        default:"project description"
     },
-    dob: {
-        type: Date,
-        required
+    codingplat: {
+        type: String,
+        default:"coding platforms used"
+    },
+    failures: {
+        type: String,
+        default:"list failures"
     }
 });
-
-module.exports = Profile = mongoose.model('user', ProfileSchema);
+ProfileSchema.plugin(passportLocalMongoose);
+module.exports =  mongoose.model('profile', ProfileSchema);

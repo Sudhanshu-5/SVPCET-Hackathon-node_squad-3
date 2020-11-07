@@ -1,0 +1,14 @@
+<%- include ("../partials/header") %>
+
+<h1>profile</h1>
+<div class="container">
+    <% profile.forEach(function(profile){ %>
+        <div>
+            <img src="<%= profile.image %>" alt="img added">
+        </div>
+    <% }); %>
+</div>
+
+<a href="/gallery">Go Back</a>
+
+<%- include ("../partials/footer") %>
