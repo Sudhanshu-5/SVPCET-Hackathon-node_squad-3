@@ -139,7 +139,7 @@ app.post("/register", function (req, res) {
 });
 
 //logout
-app.get("/auth/logout", function(req, res){
+app.get("/logout", function(req, res){
     req.logout();
     res.redirect("/");
 });
