@@ -3,32 +3,40 @@ var passportLocalMongoose = require("passport-local-mongoose");
 const ProfileSchema = new mongoose.Schema({
     year: {
         type: String,
-        
+         default:"Add class/year/job" 
     },
     lang: {
-        type: String
+        type: String,
+        default:"Add all languages known at that time"
     },
     tech: {
-        type: String
+        type: String,
+        default:"known technology stack"
     },
     comproject: {
-        type: String
+        type: String,
+        default:"complete projects"
     },
     comprojectdesc: {
-        type: String
+        type: String,
+        default:" project description"
     },
     incproject: {
-        type: String
+        type: String,
+        default:"incomplete projects"
     },
     incprojectdesc: {
-        type: String
+        type: String,
+        default:"project description"
     },
     codingplat: {
-        type: String
+        type: String,
+        default:"coding platforms used"
     },
     failures: {
-        type: String
+        type: String,
+        default:"list failures"
     }
 });
 ProfileSchema.plugin(passportLocalMongoose);
-module.exports = Profile = mongoose.model('profile', ProfileSchema);
+module.exports =  mongoose.model('profile', ProfileSchema);

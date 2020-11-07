@@ -46,7 +46,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(require("express-session")({
     secret: "going to know u soon",
@@ -121,12 +121,20 @@ app.post("/register", function (req, res) {
             return res.render("auth/register");
         }
         else {
+            const profile = new Profile();
+            profile.save();
+            user.profile.push(profile);
+            user.save(function (err, addedData) {
+            })
+             console.log(profile+"profile")   
             console.log("uuser"+user)
             passport.authenticate("local")(req, res, function(){
                 res.redirect("/");
             });
         }
     });
+
+
 });
 
 //logout
