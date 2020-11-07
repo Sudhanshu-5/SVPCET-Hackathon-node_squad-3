@@ -16,10 +16,13 @@ require('dotenv').config();
 
 
 //requiring routes
+var guidanceRoute = require("./routes/guidance.js");
 var serverRoute = require("./routes/server.js");
 var profileRoute = require("./routes/profile.js");
+
 var postsRoute= require("./routes/posts.js");
 var middleware = require("./");
+
 
 //
 //!depreciate related stuff
@@ -148,11 +151,13 @@ app.get("/", function (req, res) {
     res.render("homepage");
 });
 
-app.get("/guidance", function (req, res) {
-    res.render("guidance");
-});
-
 app.use("/profile", profileRoute);
+
+// app.use(postsRoute);
+app.use("/",serverRoute);
+app.use(guidanceRoute);
+// app.use(middleware);
+
 
 app.use("/",serverRoute);
 app.use(postsRoute)
