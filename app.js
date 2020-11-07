@@ -13,7 +13,6 @@ require('dotenv').config(); //for env variables
 // const moment = require('moment-timezone');
 
 
-
 //requiring routes
 // var chatRoute = require("./views/routes/chat.js");
 var profileRoute = require("./routes/profile");
