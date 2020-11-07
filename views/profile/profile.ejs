@@ -1,4 +1,4 @@
-
+<%=user[0].profile[0].lang%>
   <%- include ("../partials/header") %>
   <div class="container">
       <div class="row">
@@ -75,18 +75,22 @@
         
        <% user.forEach(function(item){%>
         //   alert(typeof(username)+" "+typeof(<%-JSON.stringify(item.username)%>))
+         
             if(<%-JSON.stringify(item.username)%> == username.trim()) { 
-            //  alert("when"+<%-JSON.stringify(item.name)%>)
-            //  alert(<%-JSON.stringify(item.profile)%>)
-            // alert(<%-JSON.stringify(item["profile"].lang)%>)
+             
+                <%for(let i=0;i<item.profile.length;i++){%>
+
+                
+            // alert(<%-JSON.stringify(item["profile"][i].lang)%>)
                     $("#name").val(<%-JSON.stringify(item.username)%>)
-                     $("#language").val(<%-JSON.stringify(item.lang)%>)
-                      $("#technology").val(<%-JSON.stringify(item.tech)%>)
-                       $("#com-pro").val(<%-JSON.stringify(item.comproject)%>)
-                        $("#inc-pro").val(<%-JSON.stringify(item.incproject)%>)
-                         $("#inc-pro-desc").val(<%-JSON.stringify(item.incprojectdesc)%>)
-                          $("#coding-plat").val(<%-JSON.stringify(item.codingplat)%>)
-                           $("#failures").val(<%-JSON.stringify(item.failures)%>)
+                     $("#language").val(<%-JSON.stringify(item["profile"][i].lang)%>)
+                      $("#tech").val(<%-JSON.stringify(item["profile"][i].tech)%>)
+                       $("#com-pro").val(<%-JSON.stringify(item["profile"][i].comproject)%>)
+                        $("#inc-pro").val(<%-JSON.stringify(item["profile"][i].incproject)%>)
+                         $("#inc-pro-desc").val(<%-JSON.stringify(item["profile"][i].incprojectdesc)%>)
+                          $("#coding-plat").val(<%-JSON.stringify(item["profile"][i].codingplat)%>)
+                           $("#failures").val(<%-JSON.stringify(item["profile"][i].failures)%>)
+            <%}%>
 
                } 
          <%})%>  
