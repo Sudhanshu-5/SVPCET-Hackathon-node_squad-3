@@ -195,10 +195,21 @@ app.get('/posts', (req, res) => {
       res.render('posts/showPost', { files: false });
     } else {
       files.map(file => {
-        if ( file.contentType === 'image/jpeg' || file.contentType === 'image/png'|| file.contentType === 'application/pdf' || file.contentType ==='audio/mpeg' ) {
+        if (
+          file.contentType === 'image/jpeg' ||
+          file.contentType === 'image/jpg' ||
+          file.contentType === 'image/png' ||
+          file.contentType === 'application/zip' ||
+          file.contentType === 'application/pdf' ||
+          file.contentType === 'video/mp4'
+        ) {
           file.isImage = true;
+        //   file.isApplication = true;
+        //   file.isVideo = true;
         } else {
           file.isImage = false;
+        //   file.isApplication = false;
+        //   file.isVideo = false;
         }
       });
       res.render('posts/showPost', { files: files });
