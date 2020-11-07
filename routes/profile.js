@@ -19,8 +19,8 @@ router.get("/", async (req, res) => {
 })
 router.get("/my", async (req, res) => {
     try {
-        let user = await User.find().populate("profile");
-        res.render("profile/myprofile",{user:user})
+        // let user = await User.find().populate("profile");
+        res.render("profile/myprofile",{user:req.user})
     }
     catch (error) {
         console.log(error)
