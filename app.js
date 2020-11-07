@@ -246,7 +246,7 @@ app.get('/image/:filename', (req, res) => {
     }
 
     // Check if image
-    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png'  ||  file.contentType ==='audio/mpeg'||file.contentType === 'application/pdf'||file.contentType === 'application/pdf') {
+    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png'  ||  file.contentType ==='audio/mpeg' ||  file.contentType ==='video/mp4' ||file.contentType === 'application/pdf'||file.contentType === 'application/pdf') {
       // Read output to browser
       const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res);
