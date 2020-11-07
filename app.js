@@ -159,3 +159,8 @@ app.use("/",serverRoute);
 app.listen(process.env.PORT || 3000, function () {
     console.log("app started");
 });
+
+// FAQ page
+app.get("/FAQ", function(req, res){
+    res.render("FAQ/faq.ejs");
+});
