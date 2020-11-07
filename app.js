@@ -13,9 +13,12 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 require('dotenv').config();
 // const moment = require('moment-timezone');
-
-
-//requiring routes
+const path = require('path');
+const crypto = require('crypto');
+const multer = require('multer');
+const GridFsStorage = require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
+ //requiring routes
 var guidanceRoute = require("./routes/guidance.js");
 var serverRoute = require("./routes/server.js");
 var profileRoute = require("./routes/profile.js");
@@ -32,7 +35,10 @@ mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
 
 //!mongo atlas connection String
-mongoose.connect("mongodb://sudhanshu:sudhanshu@cluster0-shard-00-00-7nbwd.mongodb.net:27017,cluster0-shard-00-01-7nbwd.mongodb.net:27017,cluster0-shard-00-02-7nbwd.mongodb.net:27017/helpmE?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority", {
+const mongoURI = "mongodb://sudhanshu:sudhanshu@cluster0-shard-00-00-7nbwd.mongodb.net:27017,cluster0-shard-00-01-7nbwd.mongodb.net:27017,cluster0-shard-00-02-7nbwd.mongodb.net:27017/helpmE?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority";
+
+
+mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useCreateIndex: true
 }).then(() => {
@@ -40,7 +46,7 @@ mongoose.connect("mongodb://sudhanshu:sudhanshu@cluster0-shard-00-00-7nbwd.mongo
 }).catch(err => {
     console.log('ERRORs:', err.message);
 });
-
+const conn = mongoose.createConnection(mongoURI,{useNewUrlParser: true});
 
 //!app config
 app.set("view engine", "ejs");
@@ -150,6 +156,99 @@ app.get("/auth/logout", function(req, res){
 app.get("/", function (req, res) {
     res.render("homepage");
 });
+// FAQ page
+app.get("/FAQ", function(req, res){
+    res.render("FAQ/faq.ejs");
+});
+let gfs;
+
+conn.once('open', () => {
+  // Init stream
+  gfs = Grid(conn.db, mongoose.mongo);
+  gfs.collection('uploads');
+});
+// Create storage engine
+  const storage = new GridFsStorage({
+  url: mongoURI,
+  file: (req, file) => {
+    return new Promise((resolve, reject) => {
+      crypto.randomBytes(16, (err, buf) => {
+        if (err) {
+          return reject(err);
+        }
+        const filename = buf.toString('hex') + path.extname(file.originalname);
+        const fileInfo = {
+          filename: filename,
+          bucketName: 'uploads'
+        };
+        resolve(fileInfo);
+      });
+    });
+  }
+});
+const upload = multer({ storage });
+
+app.get('/posts', (req, res) => {
+  gfs.files.find().toArray((err, files) => {
+    // Check if files
+    if (!files || files.length === 0) {
+      res.render('index', { files: false });
+    } else {
+      files.map(file => {
+        if (
+          file.contentType === 'image/jpeg' ||
+          file.contentType === 'image/png'
+        ) {
+          file.isImage = true;
+        } else {
+          file.isImage = false;
+        }
+      });
+      res.render('posts/showPost', { files: files });
+    }
+  });
+});
+
+
+app.post('/posts', upload.single('file'), (req, res) => {
+ 
+ res.redirect('/posts');
+}); 
+
+app.get('/files', (req, res) => {
+  gfs.files.find().toArray((err, files) => {
+    // Check if files
+    if (!files || files.length === 0) {
+      return res.status(404).json({
+        err: 'No files exist'
+      });
+      }
+         return res.json(files);
+  });
+});
+// @route GET /image/:filename
+// @desc Display Image
+app.get('/image/:filename', (req, res) => {
+  gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+    // Check if file
+    if (!file || file.length === 0) {
+      return res.status(404).json({
+        err: 'No file exists'
+      });
+    }
+
+    // Check if image
+    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
+      // Read output to browser
+      const readstream = gfs.createReadStream(file.filename);
+      readstream.pipe(res);
+    } else {
+      res.status(404).json({
+        err: 'Not an image'
+      });
+    }
+  });
+});
 
 app.use("/profile", profileRoute);
 
@@ -159,13 +258,10 @@ app.use(guidanceRoute);
 // app.use(middleware);
 
 
-app.use("/",serverRoute);
+
 app.use(postsRoute)
 app.listen(process.env.PORT || 3000, function () {
     console.log("app started");
 });
 
-// FAQ page
-app.get("/FAQ", function(req, res){
-    res.render("FAQ/faq.ejs");
-});
+
