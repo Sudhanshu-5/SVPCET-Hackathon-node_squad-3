@@ -197,11 +197,19 @@ app.get('/posts', (req, res) => {
       files.map(file => {
         if (
           file.contentType === 'image/jpeg' ||
-          file.contentType === 'image/png'
+          file.contentType === 'image/jpg' ||
+          file.contentType === 'image/png' ||
+          file.contentType === 'application/zip' ||
+          file.contentType === 'application/pdf' ||
+          file.contentType === 'video/mp4'
         ) {
           file.isImage = true;
+        //   file.isApplication = true;
+        //   file.isVideo = true;
         } else {
           file.isImage = false;
+        //   file.isApplication = false;
+        //   file.isVideo = false;
         }
       });
       res.render('posts/showPost', { files: files });
@@ -238,7 +246,7 @@ app.get('/image/:filename', (req, res) => {
     }
 
     // Check if image
-    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
+    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png' || file.contentType === 'image/jpg' || file.contentType === 'video/mp4' || file.contentType === 'application/pdf' || file.contentType === 'application/zip') {
       // Read output to browser
       const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res);
