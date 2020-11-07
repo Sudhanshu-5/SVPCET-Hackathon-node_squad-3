@@ -6,12 +6,10 @@
       <div class="col-md-6 m-auto">
         
             <form action="/posts" method="POST" enctype="multipart/form-data">
-                  <div class="form-group">
-                 
+                  <div class="form-group mt-5">
                     <input type="file" name="file" id="file" class="form-control-file ">
                   </div>
-               
-                <input type="submit" value="Submit" class="btn btn-secondary btn-block w-25">
+                  <input type="submit" value="Submit" class="btn btn-secondary btn-block w-25">
           </form>
           <hr>
             <% if(files){ %>
@@ -29,7 +27,7 @@
                 <% } else { %>
                   <%= file.filename %>
                     <% } %>
-                      
+                   
             </div>
             <% }) %>
               <% } else { %>
@@ -37,12 +35,9 @@
                 <% } %>
            
       </div>   
-                  
-               
-
-        
+      </div>
      </div>
- </div>
+
 
 
   <%- include ("../partials/footer") %>
