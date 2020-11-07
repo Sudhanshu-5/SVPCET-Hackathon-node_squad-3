@@ -150,13 +150,10 @@ app.get("/", function (req, res) {
 });
 
 app.use("/profile", profileRoute);
-<<<<<<< HEAD
-=======
 // app.use(postsRoute);
 app.use("/",serverRoute);
 app.use(guidanceRoute);
 // app.use(middleware);
->>>>>>> main
 
 app.use("/",serverRoute);
 app.use(postsRoute)
