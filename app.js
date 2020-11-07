@@ -13,7 +13,6 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 require('dotenv').config();
 // const moment = require('moment-timezone');
-// var chatRoute = require("./routes/chat.js");
 
 
 //requiring routes
