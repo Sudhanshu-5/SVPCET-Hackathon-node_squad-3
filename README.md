@@ -37,14 +37,16 @@ The profile page contains details
 ...
 ...
 # Tech-Stack used
-1. Node Express
-2. ejs
-3. mongoose 
-4. mongoDB 
-5. jQuery
-6. javascript
-7. HTML
-8. CSS
+1. Node.js
+2. Express.js
+3. ejs
+4. mongoose.js 
+5. mongoDB 
+6. mongo Atlas
+7. jQuery
+8. javascript
+9. HTML
+10. CSS
 
 
 
