@@ -123,6 +123,8 @@ app.post("/register", function (req, res) {
         dob: req.body.dob,
         mobileno:req.body.mobileno,
         username: req.body.username,
+      organisation: req.body.organisation,
+        city:req.body.city
        });
     User.register(newUser, req.body.password,function(err, user){
         if(err){
@@ -192,16 +194,24 @@ app.get('/posts', (req, res) => {
   gfs.files.find().toArray((err, files) => {
     // Check if files
     if (!files || files.length === 0) {
-      res.render('index', { files: false });
+      res.render('posts/showPost', { files: false });
     } else {
       files.map(file => {
         if (
           file.contentType === 'image/jpeg' ||
-          file.contentType === 'image/png'
+          file.contentType === 'image/jpg' ||
+          file.contentType === 'image/png' ||
+          file.contentType === 'application/zip' ||
+          file.contentType === 'application/pdf' ||
+          file.contentType === 'video/mp4'
         ) {
           file.isImage = true;
+        //   file.isApplication = true;
+        //   file.isVideo = true;
         } else {
           file.isImage = false;
+        //   file.isApplication = false;
+        //   file.isVideo = false;
         }
       });
       res.render('posts/showPost', { files: files });
@@ -238,13 +248,13 @@ app.get('/image/:filename', (req, res) => {
     }
 
     // Check if image
-    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
+    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png'||file.contentType === 'application/pdf'||file.contentType === 'application/pdf'||file.contentType === 'video/mp4') {
       // Read output to browser
       const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res);
     } else {
       res.status(404).json({
-        err: 'Not an image'
+        err: 'Not an supported format'
       });
     }
   });
