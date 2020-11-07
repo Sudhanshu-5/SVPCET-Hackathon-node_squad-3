@@ -1,27 +1,30 @@
 
   <%- include ("../partials/header") %>
   <div class="container">
-      <div class="row">
-          <span id="new-btn" type="button" class="btn btn-success m-auto">Add</span>
+      <div class="row mx-auto">
+          <div class="col-12 text-center my-2 mx-auto">
+             <h2>Let Your Code_Mates Know about u !!</h2>
+           </div>
+          <span id="new-btn" type="button" class="btn btn-outline-success m-auto">Make another entry</span>
          <form action="/myprofile" method="post" class="col-12">
-       <div class="content-box row mt-2 mx-2">
-          <div class="new-entry border col-6  ">
+       <div class="content-box row mt-2 mx-auto">
+          <div class="new-entry border col-5 mx-auto mb-5 ">
                  <div class="form-group col-12">
                         <label for="year" class="col-sm-2 col-form-label">year </label>
                         <div class="col-sm-10 year">
-                        <input type="text" class="form-control list0" id="year" name="[]">
+                        <input type="text" class="form-control list0" id="year" name="[]" >
                         </div>
                  </div>
     
             
             <div class="form-group col-12">
-                <label for="language" class="col-sm-2 col-form-label">Language </label>
+                <label for="language" class="col-sm-2 col-form-label">Languages Known</label>
                 <div class="col-sm-10 language">
                 <input type="text" class="form-control list0" id="language" name="language[]">
                 </div>
             </div>
               <div class="form-group col-12">
-                <label for="tech" class="col-sm-2 col-form-label">Technologies know </label>
+                <label for="tech" class="col-sm-2 col-form-label">Technologies known </label>
                 <div class="col-sm-10 tech">
                 <input type="text" class="form-control list0" id="tech" name="tech[]">
                 </div>
@@ -35,7 +38,8 @@
              <div class="form-group col-12">
                 <label for="com-pro-desc" class="col-sm-2 col-form-label">Description </label>
                 <div class="col-sm-10 com-pro-desc">
-                <input type="text" class="form-control list0" id="com-pro-desc" name="com-pro-desc[]">
+                    <textarea name="" id="" cols="34" rows="5" class="p-3"></textarea>
+                <!-- <textarea type="text" class="form-control list0" id="com-pro-desc" name="com-pro-desc[]"> -->
                 </div>
             </div>
              <div class="form-group col-12 ">
@@ -47,11 +51,11 @@
             <div class="form-group col-12 ">
                 <label for="inc-pro-desc" class="col-sm-2 col-form-label">Description </label>
                 <div class="col-sm-10 inc-pro-desc-btn">
-                <input type="text" class="form-control list0" id="inc-pro-desc"  name="inc-pro-desc[]">
+                 <textarea name="" id="" cols="34" rows="5" class="p-3"></textarea>
                 </div>
             </div>
             <div class="form-group col-12">
-                <label for="coding-plat" class="col-sm-2 col-form-label">COding platforms </label>
+                <label for="coding-plat" class="col-sm-2 col-form-label">Coding platforms </label>
                 <div class="col-sm-10 coding-plat">
                 <input type="text" class="form-control list0" id="coding-plat"  name="coding-plat[]">
                 </div>
@@ -59,7 +63,7 @@
             <div class="form-group col-12">
                 <label for="failures" class="col-sm-2 col-form-label">Failures </label>
                 <div class="col-sm-10 failure">
-                <input type="text" class="form-control list0" id="failure"  name="failure[]">
+                <textarea name="" id="" cols="34" rows="5" class="p-3"></textarea>
                 </div>
             </div>
          </div> 

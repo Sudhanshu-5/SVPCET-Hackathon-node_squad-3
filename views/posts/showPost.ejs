@@ -2,28 +2,27 @@
 
   <div class="container">
     <div class="row">
-      <h1 class="display-4 my-4 col-12">Posts</h1>
+      <h1 class="display-4 my-4 col-12 text-center" >Posts</h1>
       <div class="col-md-6 m-auto">
         
             <form action="/posts" method="POST" enctype="multipart/form-data">
-                  <div class="form-group">
-                 
+                  <div class="form-group mt-5">
                     <input type="file" name="file" id="file" class="form-control-file ">
                   </div>
-               
-                <input type="submit" value="Submit" class="btn btn-secondary btn-block w-25">
+                  <input type="submit" value="Submit" class="btn btn-secondary btn-block w-25">
           </form>
           <hr>
             <% if(files){ %>
           <% files.slice().reverse().forEach(function(file) { %>
             <div class="card card-body mb-3">
               <% if(file.isImage) { %>
+              
+                <embed src="image/<%= file.filename %>" width="500" height="400">
 
-                <embed src="image/<%= file.filename %>" alt="..." width="500" height="400">
                 <% } else { %>
                   <%= file.filename %>
                     <% } %>
-                      
+                   
             </div>
             <% }) %>
               <% } else { %>
@@ -31,18 +30,9 @@
                 <% } %>
            
       </div>   
-                  
-               
-
-        <div class="col-md-6 m-auto">
-          <div class="text-center">
-            <a href="/profile" >Profile</a>
-            <a href="/profile/my" >My Profile</a>
-          </div>
-          
-        </div>
+      </div>
      </div>
- </div>
+
 
 
   <%- include ("../partials/footer") %>
