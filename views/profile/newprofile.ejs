@@ -1,0 +1,45 @@
+<%- include ("../partials/header") %>
+
+<div class="container">
+    <div class="row">
+        <h1>Create Profile</h1>
+        <div style="width: 35%; margin: 25px auto;">
+            <form action="/profile" method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="year" placeholder="year">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="lang" placeholder="lang">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="tech" placeholder="tech">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="comproject" placeholder="comproject">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="comprojectdesc" placeholder="comprojectdesc">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="incproject" placeholder="incproject">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="incprojectdesc" placeholder="incprojectdesc">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="codingplat" placeholder="codingplat">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="failures" placeholder="failures">
+                </div>
+                
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-default btn-block">Submit</button>
+                </div>                
+            </form>
+
+        </div>        
+    </div>
+</div>
+
+<%- include ("../partials/footer") %>

@@ -1,0 +1,94 @@
+<%- include ("../partials/header") %>
+  <div class="container">
+      <div class="row">
+        <div class="col-8 main-profile row">
+            <div class="form-group col-12">
+                <label for="name" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                <input type="text" class="form-control" id="name">
+                </div>
+            </div>
+             <div class="form-group col-12">
+                <label for="language" class="col-sm-2 col-form-label">Language</label>
+                <div class="col-sm-10">
+                <input type="text" class="form-control" id="language">
+                </div>
+            </div>
+              <div class="form-group col-12">
+                <label for="tech" class="col-sm-2 col-form-label">Technologies know</label>
+                <div class="col-sm-10">
+                <input type="text" class="form-control" id="tech">
+                </div>
+            </div>
+             <div class="form-group col-12">
+                <label for="com-pro" class="col-sm-2 col-form-label">Project (complete)</label>
+                <div class="col-sm-10">
+                <input type="text" class="form-control" id="com-pro">
+                </div>
+            </div>
+             <div class="form-group col-12">
+                <label for="inc-pro" class="col-sm-2 col-form-label">Project (incomplete)</label>
+                <div class="col-sm-10">
+                <input type="text" class="form-control" id="inc-pro">
+                </div>
+            </div>
+            <div class="form-group col-12">
+                <label for="coding-plat" class="col-sm-2 col-form-label">COding platforms</label>
+                <div class="col-sm-10">
+                <input type="text" class="form-control" id="coding-plat">
+                </div>
+            </div>
+            <div class="form-group col-12">
+                <label for="failures" class="col-sm-2 col-form-label">Failures</label>
+                <div class="col-sm-10">
+                <input type="text" class="form-control" id="failures">
+                </div>
+            </div>
+        </div>  
+    <div class="col-4 username-ist my-5">
+        <div class="mx-auto">
+                <ul>
+        <%user.forEach(function(item){%>
+    
+               <% if(JSON.stringify(item.username) !== JSON.stringify(currentUser.username)) { %>
+                <li class="username" style="cursor:pointer">
+                    <%=item.username%>
+                </li>
+               <%}%> 
+         <%})%> 
+         </ul>
+        </div>
+    
+    </div>
+    </div>
+</div>
+
+               
+              
+
+<script>
+    let username;
+    $(".username").on('click',function(){
+        //  alert($(this).text())
+        username=$(this).text();
+        
+       <% user.forEach(function(item){%>
+        //   alert(typeof(username)+" "+typeof(<%-JSON.stringify(item.username)%>))
+            if(<%-JSON.stringify(item.username)%> == username.trim()) { 
+            //  alert("when"+<%-JSON.stringify(item.name)%>)
+            //  alert(<%-JSON.stringify(item.profile)%>)
+            // alert(<%-JSON.stringify(item["profile"].lang)%>)
+                    $("#name").val(<%-JSON.stringify(item.username)%>)
+                     $("#language").val(<%-JSON.stringify(item.lang)%>)
+                      $("#technology").val(<%-JSON.stringify(item.tech)%>)
+                       $("#com-pro").val(<%-JSON.stringify(item.comproject)%>)
+                        $("#inc-pro").val(<%-JSON.stringify(item.incproject)%>)
+                         $("#inc-pro-desc").val(<%-JSON.stringify(item.incprojectdesc)%>)
+                          $("#coding-plat").val(<%-JSON.stringify(item.codingplat)%>)
+                           $("#failures").val(<%-JSON.stringify(item.failures)%>)
+
+               } 
+         <%})%>  
+    })  
+</script>
+  <%- include ("../partials/footer") %>

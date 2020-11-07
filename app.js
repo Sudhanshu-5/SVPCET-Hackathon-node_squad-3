@@ -5,25 +5,22 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
 var bodyParser = require("body-parser");
-// var middleware = require("./middleware");
 var methodOverride = require("method-override");
 var User = require("./models/User");
+var Message = require("./models/Message");
 var Profile = require("./models/Profile");
-require('dotenv').config(); //for env variables
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+require('dotenv').config();
 // const moment = require('moment-timezone');
 // var chatRoute = require("./routes/chat.js");
 
 
 //requiring routes
-// var chatRoute = require("./views/routes/chat.js");
+var serverRoute = require("./routes/server.js");
 var profileRoute = require("./routes/profile.js");
-// var indexRoute = require("./routes/index.js");
-
-
-
-// const {
-//     asyncify
-// } = require("async");
+// var postsRoute= require("./routes/posts.js");
+var middleware = require("./routes/index.js");
 
 //
 //!depreciate related stuff
@@ -50,7 +47,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(require("express-session")({
     secret: "going to know u soon",
@@ -85,6 +82,7 @@ passport.deserializeUser(User.deserializeUser());
 //!passing data to all the tempelates
 app.use(function (req, res, next) {
     res.locals.currentUser = req.user;
+
     next();
 });
 
@@ -124,12 +122,20 @@ app.post("/register", function (req, res) {
             return res.render("auth/register");
         }
         else {
+            const profile = new Profile();
+            profile.save();
+            user.profile.push(profile);
+            user.save(function (err, addedData) {
+            })
+             console.log(profile+"profile")   
             console.log("uuser"+user)
             passport.authenticate("local")(req, res, function(){
                 res.redirect("/");
             });
         }
     });
+
+
 });
 
 //logout
@@ -143,8 +149,11 @@ app.get("/", function (req, res) {
     res.render("homepage");
 });
 
-app.use("/profile",profileRoute);
-// app.use(chatRoute);
+
+
+app.use("/profile", profileRoute);
+// app.use(postsRoute);
+app.use("/",serverRoute);
 
 app.listen(process.env.PORT || 3000, function () {
     console.log("app started");
