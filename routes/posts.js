@@ -15,6 +15,8 @@ var imageFilter = function (req, file, cb) {
     }
     cb(null, true);
 };
+var middleware = require("./index");
+
 var upload = multer({ storage: storage, fileFilter: imageFilter})
 
 var cloudinary = require('cloudinary');
@@ -25,14 +27,15 @@ cloudinary.config({
 });
 
 
-router.get('/posts', middleware.isLoggedIn, function (req, res) {
-  
+router.get('/posts',middleware.isLoggedIn, function (req, res) {
+  console.log("inside")
   res.render("posts/showPost");    
   
 })
 
 router.post('/posts', (req, res) => {
  
+  
 })
 
 

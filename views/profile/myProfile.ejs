@@ -72,16 +72,16 @@
 let count=0;
 let count2=1;
 let html=$(".content-box").html();
+
     $("#new-btn").on('click',function () {
-         $(".content-box").append(html)
-        alert(".list"+count+'list'+count2)
-        $(".list"+count).removeClass('list'+count).addClass('list'+count2);
-      
-        
+          // alert(".list"+count+'list'+count2)
+       $('.list'+count).removeClass('list'+count).addClass('list'+count2);
+      $(".content-box").append(html)
         $( '.list'+count2).each(function( index ) {
        
-            $(this).attr('name','info'+count2+'[]')
-});
+                            $(this).attr('name','info'+count2+'[]')
+                });
+                 
     count++;
     count2++;
     })

@@ -18,8 +18,8 @@ require('dotenv').config();
 //requiring routes
 var serverRoute = require("./routes/server.js");
 var profileRoute = require("./routes/profile.js");
-// var postsRoute= require("./routes/posts.js");
-var middleware = require("./routes/index.js");
+var postsRoute= require("./routes/posts.js");
+var middleware = require("./");
 
 //
 //!depreciate related stuff
@@ -153,9 +153,9 @@ app.get("/guidance", function (req, res) {
 });
 
 app.use("/profile", profileRoute);
-// app.use(postsRoute);
-app.use("/",serverRoute);
 
+app.use("/",serverRoute);
+app.use(postsRoute)
 app.listen(process.env.PORT || 3000, function () {
     console.log("app started");
 });

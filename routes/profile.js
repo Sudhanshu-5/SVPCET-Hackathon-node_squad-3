@@ -4,11 +4,11 @@ var mongoose = require("mongoose");
 var Profile = require("../models/Profile");
 var User = require("../models/User");
 var bodyParser = require('body-parser');
-// var middleware = require("../middleware"); 
+var middleware = require("./index");
 
 
 //get
-router.get("/", async (req, res) => {
+router.get("/",middleware.isLoggedIn,async (req, res) => {
     try {
         let user = await User.find().populate("profile");
         res.render("profile/profile",{user:user})
@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
         console.log(error)
     }   
 })
-router.get("/my", async (req, res) => {
+router.get("/my",middleware.isLoggedIn,async (req, res) => {
     try {
         // let user = await User.find().populate("profile");
         res.render("profile/myprofile",{user:req.user})

@@ -2,7 +2,7 @@
   <%- include ("../partials/header") %>
   <div class="container">
       <div class="row">
-        <div class="col-8 main-profile row">
+        <div class="col-8 main-profile m-auto row">
            
         </div>  
     <div class="col-4 username-ist my-5">
@@ -38,10 +38,10 @@
         //   alert(typeof(username)+" "+typeof(<%-JSON.stringify(item.username)%>))
          
             if(<%-JSON.stringify(item.username)%> == username.trim()) { 
-                $(".main-profile").append("<div><p class='username'>Profile Of  <b>"+<%-JSON.stringify(item.name)%>+"</b></p><div  id="+<%-JSON.stringify(item.username)%>+" class='border p-3' ></div> </div>")
+                $(".main-profile").append("<div class='border m-auto '><p class='username'>Profile Of  <b>"+<%-JSON.stringify(item.name)%>+"</b></p><div id="+<%-JSON.stringify(item.username)%>+"> </div></div>")
                     <%for(let i=0;i<item.profile.length;i++){%>
                     
-                        list+= "<li>  <b>Year</b>  "+<%-JSON.stringify(item["profile"][i].year)%>+"</li>"+
+                        list+= "<div class='col-12 border p-3' ><li>  <b>Year</b>  "+<%-JSON.stringify(item["profile"][i].year)%>+"</li>"+
                                 "<li> <b>Languages</b>  "+<%-JSON.stringify(item["profile"][i].lang)%>+"</li>"+
                                 "<li> <b>Technology</b> "+<%-JSON.stringify(item["profile"][i].tech)%>+"</li>"+
                                 "<li> <b>Project (complete)</b> "+<%-JSON.stringify(item["profile"][i].comproject)%>+"</li>"+
@@ -49,7 +49,7 @@
                                 "<li> <b>project (incomplete)</b>   "+<%-JSON.stringify(item["profile"][i].incproject)%>+"</li>"+
                                 "<li> <b>(Description)</b>   "+<%-JSON.stringify(item["profile"][i].incprojectdesc)%>+"</li>"+
                                 "<li> <b>Coding Platform</b>    "+<%-JSON.stringify(item["profile"][i].codingplat)%>+"</li>"+
-                                "<li> <b>Failures</b>   "+<%-JSON.stringify(item["profile"][i].failures)%>+"</li>";
+                                "<li> <b>Failures</b>   "+<%-JSON.stringify(item["profile"][i].failures)%>+"</li></div>";
                                
                     <%}%>
                     }
