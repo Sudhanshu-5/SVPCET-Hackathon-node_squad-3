@@ -148,7 +148,9 @@ app.get("/", function (req, res) {
     res.render("homepage");
 });
 
-
+app.get("/guidance", function (req, res) {
+    res.render("guidance");
+});
 
 app.use("/profile", profileRoute);
 // app.use(postsRoute);
