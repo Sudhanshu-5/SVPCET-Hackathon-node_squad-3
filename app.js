@@ -203,7 +203,8 @@ app.get('/posts', (req, res) => {
           file.contentType === 'image/png' ||
           file.contentType === 'application/zip' ||
           file.contentType === 'application/pdf' ||
-          file.contentType === 'video/mp4'
+          file.contentType === 'video/mp4' ||
+          file.contentType === 'application/zip'
         ) {
           file.isImage = true;
         //   file.isApplication = true;
@@ -248,7 +249,7 @@ app.get('/image/:filename', (req, res) => {
     }
 
     // Check if image
-    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png'||file.contentType === 'application/pdf'||file.contentType === 'application/pdf'||file.contentType === 'video/mp4') {
+    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png'||file.contentType === 'application/pdf'||file.contentType === 'application/pdf'||file.contentType === 'video/mp4'||file.contentType === 'application/zip') {
       // Read output to browser
       const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res);
