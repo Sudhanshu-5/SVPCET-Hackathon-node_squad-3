@@ -30,6 +30,8 @@ const UserSchema = new mongoose.Schema({
     dob: {
         type: Date
     },
+    organisation: String,
+    city:String,
     profile: [{
         
             type: mongoose.Schema.Types.ObjectId,

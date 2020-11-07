@@ -2,18 +2,24 @@
   <%- include ("../partials/header") %>
   <div class="container">
       <div class="row">
+          <div class="col-12 text-center mt-3"><h1>Explore brains ...</h1></div>
         <div class="col-10 main-profile m-auto mt-5 row ">
            
         </div>  
     <div class="col-2 username-ist my-5 ">
-        <div class="mx-auto">
-                <ul>
+        <div class="mx-auto text-center">
+                <div>
         <%user.forEach(function(item){%>
     
                <% if(JSON.stringify(item.username) !== JSON.stringify(currentUser.username)) { %>
-                <li class="username" style="cursor:pointer">
-                    <%=item.username%>
-                </li>
+                
+                    <div class="username pt-3 pb-0" >
+                        <%=item.username%>
+                    </div>
+                    <div class="college  pl-5 pb-0" id="<%=item.username%>" style="color:gray;font-size: .8rem;">
+                        <%=item.organisation%>
+                    </div>
+              
                <%}%> 
          <%})%> 
          </ul>
@@ -62,7 +68,8 @@
                                 list="";
                             
                     <%})%>
-username=$(this).hide();
+$(this).hide();
+$(this).next().remove("div");
                    
 });
 
