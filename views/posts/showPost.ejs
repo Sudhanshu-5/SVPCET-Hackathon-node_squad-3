@@ -1,33 +1,37 @@
   <%- include ("../partials/header") %>
- 
+
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6 m-auto">
+        
           <h1 class="text-center display-4 my-4">Mongo File Uploads</h1>
-        <h1 class="form_top_head">Upload New Post Here</h1>
-              <div class="container">
-                  <div class="row">
-                      <div style="width: 30%; margin: 25px auto;">
-                          <form action="/posts" method="POST" enctype="multipart/form-data">
-                              <!-- <div class="form-group">
-                                  <input class="form-control" type="text" name="gallery[name]" placeholder="Submitted by">
-                              </div> -->
-                              <div class="form-group">
-                                  <input type="file" id="image" class="image" name="image" accept="image/*" required>
-                              </div>
-                              <div class="form-group">
-                                  <button class="btn btn-lg btn-primary btn-block">Submit!</button>
-                              </div>
-                          </form>
-                          <a href="/gallery/public_page">Go Back</a>
-                      </div>
-                  </div>
-                </div>
-
-          <div class="container">
+            <form action="/posts" method="POST" enctype="multipart/form-data">
+            <div class="custom-file mb-3">
+              <input type="file" name="file" id="file" class="custom-file-input">
+              <label for="file" class="custom-file-label">Choose File</label>
+            </div>
+            <input type="submit" value="Submit" class="btn btn-primary btn-block">
+          </form>
           <hr>
-       
-        </div>
+            <% if(files){ %>
+          <% files.slice().reverse().forEach(function(file) { %>
+            <div class="card card-body mb-3">
+              <% if(file.isImage) { %>
+                <img src="image/<%= file.filename %>" alt="" class="w-100" style="height:50vh;">
+                <% } else { %>
+                  <%= file.filename %>
+                    <% } %>
+                      
+            </div>
+            <% }) %>
+              <% } else { %>
+                <p>No files to show</p>
+                <% } %>
+           
+      </div>   
+                  
+               
+
         <div class="col-md-6 m-auto">
           <div class="text-center">
             <a href="/profile" >Profile</a>
@@ -35,8 +39,8 @@
           </div>
           
         </div>
-           
-      </div>
-    </div>
+     </div>
+ </div>
+
 
   <%- include ("../partials/footer") %>
