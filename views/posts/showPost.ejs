@@ -2,22 +2,26 @@
 
   <div class="container">
     <div class="row">
+      <h1 class="display-4 my-4 col-12">Posts</h1>
       <div class="col-md-6 m-auto">
         
-          <h1 class="text-center display-4 my-4">Mongo File Uploads</h1>
+  
+
             <form action="/posts" method="POST" enctype="multipart/form-data">
-            <div class="custom-file mb-3">
-              <input type="file" name="file" id="file" class="custom-file-input">
-              <label for="file" class="custom-file-label">Choose File</label>
-            </div>
-            <input type="submit" value="Submit" class="btn btn-primary btn-block">
+                  <div class="form-group">
+                 
+                    <input type="file" name="file" id="file" class="form-control-file ">
+                  </div>
+               
+                <input type="submit" value="Submit" class="btn btn-secondary btn-block w-25">
           </form>
           <hr>
             <% if(files){ %>
           <% files.slice().reverse().forEach(function(file) { %>
             <div class="card card-body mb-3">
               <% if(file.isImage) { %>
-                <img src="image/<%= file.filename %>" alt="" class="w-100" style="height:50vh;">
+
+                <embed src="image/<%= file.filename %>" width="500" height="400">
                 <% } else { %>
                   <%= file.filename %>
                     <% } %>

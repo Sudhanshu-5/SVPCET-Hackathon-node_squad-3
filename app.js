@@ -192,13 +192,10 @@ app.get('/posts', (req, res) => {
   gfs.files.find().toArray((err, files) => {
     // Check if files
     if (!files || files.length === 0) {
-      res.render('index', { files: false });
+      res.render('posts/showPost', { files: false });
     } else {
       files.map(file => {
-        if (
-          file.contentType === 'image/jpeg' ||
-          file.contentType === 'image/png'
-        ) {
+        if ( file.contentType === 'image/jpeg' || file.contentType === 'image/png'|| file.contentType === 'application/pdf' || file.contentType ==='audio/mpeg' ) {
           file.isImage = true;
         } else {
           file.isImage = false;
@@ -238,7 +235,7 @@ app.get('/image/:filename', (req, res) => {
     }
 
     // Check if image
-    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
+    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png'  ||  file.contentType ==='audio/mpeg'||file.contentType === 'application/pdf'||file.contentType === 'application/pdf') {
       // Read output to browser
       const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res);

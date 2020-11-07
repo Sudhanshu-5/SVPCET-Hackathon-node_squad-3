@@ -2,10 +2,10 @@
   <%- include ("../partials/header") %>
   <div class="container">
       <div class="row">
-        <div class="col-8 main-profile m-auto row">
+        <div class="col-10 main-profile m-auto mt-5 row ">
            
         </div>  
-    <div class="col-4 username-ist my-5">
+    <div class="col-2 username-ist my-5 ">
         <div class="mx-auto">
                 <ul>
         <%user.forEach(function(item){%>
@@ -24,7 +24,11 @@
 </div>
 
                
-              
+       <style>
+           li{
+             list-style-type: none;
+           }
+       </style>       
 
 <script>
        let textboxes="";
@@ -38,10 +42,10 @@
         //   alert(typeof(username)+" "+typeof(<%-JSON.stringify(item.username)%>))
          
             if(<%-JSON.stringify(item.username)%> == username.trim()) { 
-                $(".main-profile").append("<div class='border m-auto '><p class='username'>Profile Of  <b>"+<%-JSON.stringify(item.name)%>+"</b></p><div id="+<%-JSON.stringify(item.username)%>+"> </div></div>")
+                $(".main-profile").append("<div class=' mt-5 row  w-100 '><h3 class='username col-12'>Profile Of  <b>"+<%-JSON.stringify(item.name)%>+"</b></h3><div id="+<%-JSON.stringify(item.username)%>+" class='col-12 row'> </div></div>")
                     <%for(let i=0;i<item.profile.length;i++){%>
                     
-                        list+= "<div class='col-12 border p-3' ><li>  <b>Year</b>  "+<%-JSON.stringify(item["profile"][i].year)%>+"</li>"+
+                        list+= "<div class='col-6  p-3 px-2'  ><li style='font-size:1.4rem'>  <b>Year</b>  "+<%-JSON.stringify(item["profile"][i].year)%>+"</li>"+
                                 "<li> <b>Languages</b>  "+<%-JSON.stringify(item["profile"][i].lang)%>+"</li>"+
                                 "<li> <b>Technology</b> "+<%-JSON.stringify(item["profile"][i].tech)%>+"</li>"+
                                 "<li> <b>Project (complete)</b> "+<%-JSON.stringify(item["profile"][i].comproject)%>+"</li>"+
