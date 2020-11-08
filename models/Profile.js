@@ -21,6 +21,10 @@ const ProfileSchema = new mongoose.Schema({
         type: String,
         default:" project description"
     },
+    url: {
+        type: String,
+        default:" project url"
+    },
     incproject: {
         type: String,
         default:"incomplete projects"
