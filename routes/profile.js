@@ -5,6 +5,7 @@ var Profile = require("../models/Profile");
 var User = require("../models/User");
 var bodyParser = require('body-parser');
 var middleware = require("./index");
+const { findOneAndUpdate, findOne } = require("../models/User");
 
 
 //get
@@ -21,6 +22,30 @@ router.get("/my",middleware.isLoggedIn,async (req, res) => {
     try {
         // let user = await User.find().populate("profile");
         res.render("profile/myprofile",{user:req.user})
+    }
+    catch (error) {
+        console.log(error)
+    }   
+});
+router.post("/my",middleware.isLoggedIn,async (req, res) => {
+    try {
+        console.log("1111111111111" + JSON.stringify(req.body.info0))
+        let result = await Profile.findOneAndUpdate({ year: req.body.info0.year }, req.body.info0, {
+            new: true,
+            upsert: true,
+            // Return the raw result from the MongoDB driver
+        });
+        let userDoc = await User.findOne({ username: req.user.username });
+
+        userDoc.profile.push(result);
+        userDoc.save(function (err, addedData) {
+                                    if (err) {
+                                        console.log(err);
+                                    } else {
+                                        //console.log("pushedandsavedData" + addedData);
+                                    }
+                                });
+        res.redirect("/profile");
     }
     catch (error) {
         console.log(error)

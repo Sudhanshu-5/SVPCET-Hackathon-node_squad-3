@@ -6,13 +6,13 @@
              <h2>Let Your Code_Mates Know about u !!</h2>
            </div>
           <span id="new-btn" type="button" class="btn btn-outline-success m-auto">Make another entry</span>
-         <form action="/myprofile" method="post" class="col-12">
+         <form action="/profile/my" method="post" class="col-12">
        <div class="content-box row mt-2 mx-auto">
           <div class="new-entry border col-5 mx-auto mb-5 ">
                  <div class="form-group col-12">
                         <label for="year" class="col-sm-2 col-form-label">year </label>
                         <div class="col-sm-10 year">
-                        <input type="text" class="form-control list0" id="year" name="[]" >
+                        <input type="text" class="form-control list0" id="year" name="info0[year]" >
                         </div>
                  </div>
     
@@ -20,54 +20,55 @@
             <div class="form-group col-12">
                 <label for="language" class="col-sm-2 col-form-label">Languages Known</label>
                 <div class="col-sm-10 language">
-                <input type="text" class="form-control list0" id="language" name="language[]">
+                <input type="text" class="form-control list0" id="language" name="info0[lang]">
                 </div>
             </div>
               <div class="form-group col-12">
                 <label for="tech" class="col-sm-2 col-form-label">Technologies known </label>
                 <div class="col-sm-10 tech">
-                <input type="text" class="form-control list0" id="tech" name="tech[]">
+                <input type="text" class="form-control list0" id="tech" name="info0[tech]">
                 </div>
             </div>
              <div class="form-group col-12">
                 <label for="com-pro" class="col-sm-2 col-form-label">Project (complete) </label>
                 <div class="col-sm-10 com-pro">
-                <input type="text" class="form-control list0" id="com-pro" name="com-pro[]">
+                <input type="text" class="form-control list0" id="com-pro" name="info0[comproject]">
                 </div>
             </div>
              <div class="form-group col-12">
                 <label for="com-pro-desc" class="col-sm-2 col-form-label">Description </label>
                 <div class="col-sm-10 com-pro-desc">
-                    <textarea name="" id="" cols="34" rows="5" class="p-3"></textarea>
+                    <textarea  id="" cols="34" rows="5" class="p-3" name="info0[comprojectdesc]"></textarea>
                 <!-- <textarea type="text" class="form-control list0" id="com-pro-desc" name="com-pro-desc[]"> -->
                 </div>
             </div>
              <div class="form-group col-12 ">
                 <label for="inc-pro" class="col-sm-2 col-form-label">Project (incomplete) </label>
                 <div class="col-sm-10 inc-pro">
-                <input type="text" class="form-control list0" id="inc-pro"  name="inc-pro[]">
+                <input type="text" class="form-control list0" id="inc-pro"  name="info0[incproject]">
                 </div>
             </div>
             <div class="form-group col-12 ">
                 <label for="inc-pro-desc" class="col-sm-2 col-form-label">Description </label>
                 <div class="col-sm-10 inc-pro-desc-btn">
-                 <textarea name="" id="" cols="34" rows="5" class="p-3"></textarea>
+                 <textarea id="" cols="34" rows="5" class="p-3" name="info0[incprojectdesc]"></textarea>
                 </div>
             </div>
             <div class="form-group col-12">
                 <label for="coding-plat" class="col-sm-2 col-form-label">Coding platforms </label>
                 <div class="col-sm-10 coding-plat">
-                <input type="text" class="form-control list0" id="coding-plat"  name="coding-plat[]">
+                <input type="text" class="form-control list0" id="coding-plat"  name="info0[codingplat]">
                 </div>
             </div>
             <div class="form-group col-12">
                 <label for="failures" class="col-sm-2 col-form-label">Failures </label>
                 <div class="col-sm-10 failure">
-                <textarea name="" id="" cols="34" rows="5" class="p-3"></textarea>
+                <textarea id="" cols="34" rows="5" class="p-3" name="info0[failures]"></textarea>
                 </div>
             </div>
          </div> 
          </div>
+         <button class="btn btn-primary">Submit</button>
         </form>
      </div>
 </div>
