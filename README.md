@@ -1,5 +1,5 @@
-# SVPCET-Hackathon-Comet-03
-Project submitted under SVPCET Virtual Hackathon.
+# SVPCET-Hackathon-node_squad-03
+Project submitted under  SVPCET Virtual Hackathon.
 Team Members:
 1. <Sudhanshu Yawalkar> (Team Leader)
 2. <Rutuja Ambhore>
